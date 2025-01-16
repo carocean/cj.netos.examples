@@ -1,0 +1,12 @@
+{
+  "valids": [
+    {
+      "name": "hello",
+      "uris": [
+        "app://xxx:way"
+      ],
+      "props": {}
+    }
+  ],
+  "invalids": []
+}

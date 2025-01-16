@@ -1,0 +1,6 @@
+cj/netos/examples/helloworld/xxx/openports/Home.java
+ cj.netos.examples.helloworld.xxx.openports.Home
+cj/netos/examples/helloworld/xxx/openports/AppsiteProgram.java
+ cj.netos.examples.helloworld.xxx.openports.AppsiteProgram
+cj/netos/examples/helloworld/xxx/openports/port/HelloworldPorts.java
+ cj.netos.examples.helloworld.xxx.openports.port.HelloworldPorts
