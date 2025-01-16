@@ -35,7 +35,7 @@ Openports is a distributed microservice platform designed specifically for devel
 
    The page displaying the open ports will be shown. Click on the `helloworld` item in the left tree, and input the `name` parameter on the right-hand side of the page.
 
-![Ports API](pic.jpg)
+![Ports API](https://github.com/carocean/cj.netos.examples/documents/openports-ui.png)
 
 **Summary**: This example demonstrates the functionality of open ports. You will get an overall impression of its operation. Next, we will explore how to run the example using IntelliJ IDEA if you have cloned the source code from GitHub.
 
