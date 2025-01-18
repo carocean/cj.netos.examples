@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Helloworld</title>
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+<div class="container">
+  <div class="up-side">
+    <div class="desc">
+      <h1>Gateway Web Application Example</h1>
+      <p>
+        This example aims to comprehensively demonstrate the powerful features of <strong>Gateway</strong> for building web applications, including efficient use of service containers and the flexibility of multi-language mixed programming.
+        Through this example, you will learn the following core techniques and practices:
+      </p>
+
+      <h2>1. Efficient Use of Service Containers</h2>
+      <p>Showcase how to leverage service containers to seamlessly integrate different service modules into web applications, providing a structured and modular development experience.</p>
+
+      <h2>2. Multi-language Web Page Construction</h2>
+      <ul>
+        <li>Use <strong>Java</strong> to implement backend logic and page generation, meeting complex business requirements.</li>
+        <li>Build dynamic web pages and services using <strong>JavaScript Service (JSS)</strong>, providing flexible interaction capabilities for the frontend.</li>
+      </ul>
+
+      <h2>3. Multi-language Mixed Programming</h2>
+      <p>
+        Demonstrate how to combine the advantages of Java services and JSS services to achieve a collaborative mixed programming model. This approach allows you to leverage the strengths of both technologies to create efficient and dynamic web applications.
+      </p>
+
+      <h2>Implementation Steps</h2>
+      <h3>1. Configure the Gateway Environment</h3>
+      <p>Ensure that Gateway supports running Java and JSS services, and properly configure the service container for registering and managing services.</p>
+
+      <h3>2. Develop Java Services</h3>
+      <p>Implement core business logic with Java, such as data processing, backend interface development, and complex computations. Deploy the completed Java services to the Gateway's service container to ensure stable operation.</p>
+
+      <h3>3. Build JSS Services</h3>
+      <p>Use JSS to develop dynamic web components, handling frontend interactions and lightweight services. JSS services are flexible and easy to update, making them ideal for real-time interaction needs.</p>
+
+      <h3>4. Integrate Web Pages and Services</h3>
+      <p>
+        Combine Java and JSS services into a unified web application, leveraging the strengths of both:
+      <ul>
+        <li>Java services handle complex backend tasks.</li>
+        <li>JSS services manage dynamic interactions and real-time responses on the page.</li>
+      </ul>
+      </p>
+
+      <h3>5. Demonstrate Mixed Programming Model</h3>
+      <p>In the example, showcase how to simultaneously call Java and JSS services through the Gateway platform to achieve seamless collaboration. Through reasonable task division, maximize the advantages of each technology to provide users with a smooth experience.</p>
+
+      <h2>System Architecture Diagram</h2>
+      <pre>
++-----------------------------------+
+|           Gateway Service Container          |
++-----------------------------------+
+|                                   |
+|   +---------------------------+   |
+|   | Java Services             |   |
+|   | (Core Logic & Backend Processing) |   |
+|   +---------------------------+   |
+|                                   |
+|   +---------------------------+   |
+|   | JSS Services              |   |
+|   | (Dynamic Pages & Lightweight Services)  |   |
+|   +---------------------------+   |
+|                                   |
++-----------------------------------+
+        ↑                      ↑
+        |                      |
+        |                      |
+        ↓                      ↓
+    User Requests          Webpage & Service Responses
+        </pre>
+
+      <p>
+        Through this example, you will master how to build efficient web applications based on Gateway, understanding the roles and collaboration of Java and JSS in service development.
+        If you need more in-depth code examples or specific implementation guidance, feel free to let us know!
+      </p>
+    </div>
+  </div>
+  <div class="content">
+    <div class="label"><span>Experience Entry Points</span></div>
+    <ul class="routine">
+      <li>
+        <span><a href="./pages/exploreforjss.html">Explore JSS WebView</a></span>
+        <p><span>Note:</span>Experience a page implemented using JavaScript Services (JSS) for modern web applications.</p>
+      </li>
+      <li>
+        <span><a href="./pages/exploreforjava.html">Explore Java WebView</a></span>
+        <p><span>Note:</span>Experience a page implemented using Java WebView for seamless integration.</p>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

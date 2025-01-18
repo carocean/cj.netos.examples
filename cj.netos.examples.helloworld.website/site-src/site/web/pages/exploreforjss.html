@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring JSS - Web Construction Example</title>
+    <link rel="stylesheet" href="../css/exploreforjss.css">
+    <script src="../js/jquery/jquery-2.1.4.js"></script>
+    <script src="../js/exploreforjss.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Exploring JSS - Web Construction Example</h1>
+</header>
+
+<main>
+    <div id="input-container">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" placeholder="Type your name here">
+        <button id="test-button">Test</button>
+    </div>
+    <div id="response"></div>
+    <section id="content">
+        <h2>Overview:</h2>
+        <p>
+            This document demonstrates an advanced web construction example based on JavaScript Services (JSS), showcasing the interaction between multiple files and components.
+            The architecture leverages both frontend JavaScript and backend Java services, offering an advanced and integrated development approach. This is in contrast to traditional frameworks like Spring, where frontend and backend components are often tightly coupled or separated.
+        </p>
+
+        <h3>Key Components:</h3>
+        <ul>
+            <li>exploreforjss.jss.js: This JavaScript file handles the rendering of the web page. It interacts with backend services through JavaScript, initiating requests and dynamically rendering the page structure.</li>
+            <li>JssService.jss.js: This is the service provider JavaScript file. It interacts with Java backend services, making calls to Java-based services like AService for executing logic such as the <code>hello</code> method.</li>
+            <li>AService (Java Implementation): A backend service implemented in Java that handles the actual business logic. When JssService.jss.js invokes the <code>hello</code> method, it is ultimately processed by AService, which then returns the result.</li>
+            <li>exploreforjss.html: The HTML structure of the page, defining the basic layout and presentation. It is dynamically rendered by the frontend JavaScript through the exploreforjss.jss.js file.</li>
+        </ul>
+
+        <h3>How the Flow Works:</h3>
+        <p>
+            - The user sends a request (either by loading the webpage or triggering an operation),<br>
+            - exploreforjss.jss.js initiates service calls and loads the exploreforjss.html file for rendering.<br>
+            - exploreforjss.jss.js calls JssService.jss.js to fetch data or perform operations.<br>
+            - JssService.jss.js calls the backend AService to execute the <code>hello</code> method.<br>
+            - The backend AService processes the request and returns the result to JssService.jss.js.<br>
+            - JssService.jss.js returns the result to exploreforjss.jss.js for final rendering.<br>
+            - Finally, exploreforjss.jss.js renders the data inside the exploreforjss.html structure, and the user sees the dynamically generated page.<br>
+        </p>
+
+        <h3>Advantages of This Approach:</h3>
+        <ul>
+            <li>Seamless Integration Between Frontend and Backend: Unlike traditional frameworks such as Spring, where frontend and backend are often separate, JSS allows for a tighter integration between JavaScript and Java. The JssService.jss.js file acts as a bridge, enabling easy communication between the frontend (JavaScript) and backend (Java).</li>
+            <li>Dynamic and Flexible Rendering: With JSS, you can dynamically render content from backend services in real time, making it more efficient than static HTML rendering common in frameworks like Spring.</li>
+            <li>Unified Development Process: JSS allows for a unified development approach where both the client-side and server-side logic can be managed together, leading to less complexity and improved performance.</li>
+        </ul>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Exploring JSS. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

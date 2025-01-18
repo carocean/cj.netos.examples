@@ -1,33 +1,37 @@
-sourceSets { 
-	 main { 
-	 	java{
-	 		srcDir "$projectDir/src"
-	 	}
-	 	resources{
-		 	srcDir "$projectDir/site-src"
-		 }
-	 } 
- 	}
- 	sourceCompatibility = 1.8
-    targetCompatibility = 1.8
- 	tasks.withType(JavaCompile) {  
-        options.encoding = "UTF-8"  
-    } 
- repositories { 
- }
-
-dependencies {
-	compile fileTree('src/cj/refembeds')
-	compile fileTree('src/cj/references')
+sourceSets {
+    main {
+        java{
+            srcDir "$projectDir/src"
+        }
+        resources{
+            srcDir "$projectDir/site-src"
+        }
+    }
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+repositories {
+    flatDir(dirs: "../global/lib")
 }
 
+dependencies {
+    compile group: 'cj.studio.gateway2',name:'cj.studio.gateway.socket',version:cj_studio_gateway_socket_version
+    compile fileTree('src/cj/refembeds')
+    compile fileTree('src/cj/references')
 
- task releaseToOutputs(type: Copy) {
- dependsOn "build"
- from 'build/libs/'
- into '../outputs'
- include '**/*.jar'
- }
- task release(type:Copy){
-  dependsOn "releaseToOutputs"
- }
+}
+
+task releaseToHost(type: Copy) {
+    dependsOn "build"
+    from 'build/libs/'
+    into './cmdtools/gateway/assemblies/website'
+    include '**/*.jar'
+    exclude '**/*-javadoc.jar','**/*-sources.jar'
+}
+
+task release(type:Copy){
+    dependsOn "releaseToHost"
+}

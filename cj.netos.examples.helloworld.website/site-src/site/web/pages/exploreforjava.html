@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Java Web Application</title>
+    <link rel="stylesheet" href="../css/exploreforjava.css">
+</head>
+<body>
+<header>
+    <h1>Explore Java Web Application</h1>
+</header>
+
+<!-- Service result section -->
+<section id="service-result">
+    <h2>Service Call Result:</h2>
+    <div id="welcome-message">Loading...</div> <!-- This will display the service response -->
+</section>
+
+<!-- Content section -->
+<section id="content">
+    <h2>Exploring Java and Gateway Application Development</h2>
+
+    <p>Using a gateway to develop Java web applications offers several advantages, especially in modern microservices architectures. Gateways provide separation of concerns, efficient routing, and scalability, helping enterprises handle complex service communication and high load challenges. Below are the key advantages of using gateways in Java web development:</p>
+
+    <ul>
+        <li><strong>Efficient Communication:</strong> Gateways use NIO technology to achieve low latency and high throughput, ensuring efficient distributed data processing.</li>
+        <li><strong>Modular Scalability:</strong> Supports modular development and dynamic deployment, with multi-layer architecture to enhance system fault tolerance and scalability.</li>
+        <li><strong>Hybrid Development Support:</strong> By utilizing JSS services, combining the flexibility of JavaScript with the power of Java, it improves development efficiency.</li>
+        <li><strong>Cloud-Native Compatibility:</strong> Fully supports containerization and cloud-native architectures like Kubernetes, simplifying deployment and scaling in cloud environments.</li>
+        <li><strong>Advanced Microservice Management:</strong> Integrates microservices features such as service registration, discovery, routing, and circuit breakers to ensure high reliability and scalability.</li>
+        <li><strong>Non-Buffered Data Processing:</strong> Supports non-buffered data streams, optimizing large-scale data transfers and avoiding performance bottlenecks in traditional web containers.</li>
+        <li><strong>Subscription-based Messaging:</strong> Provides broadcasting mechanisms for real-time synchronization and message distribution, suitable for complex distributed systems.</li>
+        <li><strong>Developer-Friendly:</strong> Offers rich debugging tools and simplified configuration, helping developers build and debug systems faster.</li>
+    </ul>
+
+    <h3>Service Call Process Example</h3>
+    <p>Here is a typical flow for rendering a page and calling a Java service:</p>
+    <ol>
+        <li>The user requests access to the <code>/pages/exploreforjava.html</code> page.</li>
+        <li>The gateway forwards the request to the <code>ExploreForJavaWebview</code> class’s <code>flow()</code> method.</li>
+        <li>The <code>flow()</code> method retrieves the HTML page content.</li>
+        <li>Inside <code>flow()</code>, it calls the Java service <code>aService.hello()</code> method.</li>
+        <li>Modifies the HTML and returns the page to the user.</li>
+    </ol>
+
+    <pre><code>
+package cj.netos.examples.helloworld.website.webview;
+
+import cj.netos.examples.helloworld.website.service.IAService;
+import cj.studio.ecm.annotation.CjService;
+import cj.studio.ecm.annotation.CjServiceRef;
+import cj.studio.ecm.net.Circuit;
+import cj.studio.ecm.net.CircuitException;
+import cj.studio.ecm.net.Frame;
+import cj.studio.gateway.socket.app.IGatewayAppSiteResource;
+import cj.studio.gateway.socket.app.IGatewayAppSiteWayWebView;
+import org.jsoup.nodes.Document;
+
+@CjService(name = "/pages/exploreforjava.html")
+public class ExploreForJavaWebview implements IGatewayAppSiteWayWebView {
+    @CjServiceRef
+    IAService aService;
+
+    @Override
+    public void flow(Frame frame, Circuit circuit, IGatewayAppSiteResource resource) throws CircuitException {
+        Document doc = resource.html(frame.relativeUrl());
+        circuit.content().writeBytes(doc.toString().getBytes());
+    }
+}
+
+package cj.netos.examples.helloworld.website.service;
+
+import cj.studio.ecm.annotation.CjService;
+
+@CjService(name = "aService")
+public class AServiceImpl implements IAService {
+
+    @Override
+    public String hello(String name) {
+        return String.format("Hello %s!", name);
+    }
+}
+        </code></pre>
+</section>
+
+<footer>
+    <p>&copy; 2025 Java Web Application</p>
+</footer>
+</body>
+</html>

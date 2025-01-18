@@ -1,168 +1,130 @@
+# ECM Technology System Overview
 
-# Openports Application Setup Guide
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Core Advantages of ECM Technology System](#core-advantages-of-ecm-technology-system)
+    - [1. Simplified Service Development](#1-simplified-service-development)
+    - [2. Automated Service Governance](#2-automated-service-governance)
+    - [3. Efficient Development and Deployment](#3-efficient-development-and-deployment)
+    - [4. Flexible Microservice Composition and Expansion](#4-flexible-microservice-composition-and-expansion)
+    - [5. JSS Services: The Advantage of Cross-Platform Development](#5-jss-services-the-advantage-of-cross-platform-development)
+    - [6. Efficient Web Application Development and Openports Integration](#6-efficient-web-application-development-and-openports-integration)
+3. [How ECM Works](#how-ecm-works)
+    - [Gateway Web Application Example](#gateway-web-application-example)
+    - [Gateway Openports Application Example](#gateway-openports-application-example)
+4. [ECM vs. Traditional Microservices Frameworks](#ecm-vs-traditional-microservices-frameworks)
+    - [Comparison with Spring Series Frameworks](#comparison-with-spring-series-frameworks)
+    - [Comparison with Microservices Architecture](#comparison-with-microservices-architecture)
+5. [Conclusion](#conclusion)
 
-Openports is a distributed microservice platform designed specifically for developing RESTful APIs, built on the ecm service container framework. It is supported by the gateway (Gateway) for distributed networking, running as a type of application under the gateway.
+---
 
-## Development Environment
+## Introduction
 
-- **JDK 1.8**
-- **Gateway** (latest version: [Gateway GitHub Repository](https://github.com/carocean/cj.studio.gateway2/tree/cj/cmdtools/gateway))
-- **Nexus** (Gradle compilation is used in this example, requiring access to a private repository to fetch dependencies)
+With the continuous development of microservices architecture, the complexities of traditional frameworks are gradually exposed. The ECM (Enterprise Component Model) technology system provides a simple and efficient way to develop, manage, and expand microservice applications. Through its automated service governance, simplified configuration, and flexible service composition, ECM makes microservice development much easier and greatly improves development efficiency and system scalability.
 
-## Running the Example
+---
 
-### Direct Execution of the Program
+## Core Advantages of ECM Technology System
 
-1. Change directory to the current project:
-    ```bash
-    cd cmdtools/gateway
-    ```
-
-2. Execute the following commands:
-    - On Linux or macOS:
-    ```bash
-    sh gateway.sh
-    ```
-    - On Windows:
-    ```bash
-    gateway.bat
-    ```
-
-3. Open the URL:
-    ```
-    http://localhost:6060/hello/portsapi/
-    ```
-
-   The page displaying the open ports will be shown. Click on the `helloworld` item in the left tree, and input the `name` parameter on the right-hand side of the page.
-
-![Ports API](https://github.com/carocean/cj.netos.examples/blob/main/documents/openports-ui.png?raw=true)
-
-**Summary**: This example demonstrates the functionality of open ports. You will get an overall impression of its operation. Next, we will explore how to run the example using IntelliJ IDEA if you have cloned the source code from GitHub.
-
-### Debugging the Program
-
-1. Check out the project using IntelliJ IDEA.
-2. The example project uses Nexus for the private repository, and dependencies such as `cj.netos.*` and `cj.studio.*` might not be found initially. Don’t worry.
-3. Set up a Nexus private repository, recommended to run Nexus using Docker Desktop. Below is the `docker-compose.yml` code:
-    ```yaml
-    version: '3.7'
-    services:
-      nexus:
-        image: sonatype/nexus3:latest
-        container_name: nexus
-        restart: always
-        ports:
-          - "65000:8081"  # Map port 65000 to container's port 8081
-        volumes:
-          - nexus-data:/nexus-data
-        environment:
-          INSTALL4J_ADD_VM_PARAMS: "-Xms2G -Xmx2G -XX:MaxDirectMemorySize=2G"
-        networks:
-          - geochat_network
-
-    volumes:
-      nexus-data:
-        driver: local
-
-    networks:
-      geochat_network:
-        external: true
-    ```
-
-4. Create a private repository named `netos` in Nexus.
-
-5. Check out the following projects from GitHub:
-    - **ecm Base Service Container**: [GitHub Repository](https://github.com/carocean/cj.studio.ecm)
-    - In IntelliJ IDEA, open the Gradle panel (right panel), and run the command:
-    ```bash
-    gradle uploadArchives
-    ```
-   It should automatically publish to the Nexus repository. If the repository path is incorrect, update the Nexus repository address in the `./gradle.properties` file.
-
-    - Similarly, check out the Gateway project and publish it: [GitHub Repository](https://github.com/carocean/cj.studio.gateway2)
-
-6. In IntelliJ IDEA, open the Gradle panel for the current example project, and run the following command:
-    ```bash
-    gradle release
-    ```
-   If it runs successfully, the setup is complete.
-
-7. Now, proceed to configure the program for debugging:
-    - In the IntelliJ IDEA toolbar, go to `Run/Debug Configurations` and select `Edit Configurations`.
-    - Click on the `+` button to add a new configuration: `Add new configuration`.
-    - Select `Jar Application` as the configuration type.
-    - In the configuration window, set the `Path To Jar` to the file `gateway-2.4.6.jar` found in the `cmdline` directory of this project.
-    - Copy the current directory path where `gateway-2.4.6.jar` is located and paste it in the `Program Arguments` field with the following argument:
-    ```bash
-    -d <paste path here>
-    ```
-    - After confirming, you will see the configuration in the `Run/Debug Configurations` dropdown. You can now run or debug the program.
-
-    - Before debugging, you can set a breakpoint in the `helloworld` method of the `HelloworldPorts` class, then open the URL `http://localhost:6060/hello/portsapi/` to test the `helloworld` open port. If the breakpoint is hit, the debugging setup is successful.
-
-## Developing Openports Applications
-
-### Openports Project Structure
-
-The development guidelines require that a complete Openports project contains at least two sub-projects:
-1. A project dedicated to declaring open ports, which only declares the API interfaces without implementing them. This project is typically named with the `.openports` suffix.
-2. An implementation project, which provides the actual service implementation for the open ports. This is typically named with the `.program` suffix.
-
-#### Declare Open Ports Interface
-
-In the `.openports` project, declare the open ports interface like this:
+### 1. Simplified Service Development
+The ECM technology system uses **annotation-driven** and **simplified configurations**. Developers only need to declare service interfaces and implementations using simple annotations, and the system will automatically handle service registration, routing, and invocation management. This significantly improves development efficiency.
 
 ```java
-package cj.netos.examples.helloworld.openports;
-
-import cj.studio.openport.AccessTokenIn;
-import cj.studio.openport.annotations.CjOpenport;
-import cj.studio.openport.annotations.CjOpenportParameter;
-import cj.studio.openport.annotations.CjOpenports;
-
-@CjOpenports(usage = "This is an example of an Openports")
-public interface IHelloworldPorts {
-    @CjOpenport(usage = "How can I get the name you typed in via the parameter name?", tokenIn = AccessTokenIn.nope)
-    String helloworld(@CjOpenportParameter(usage = "the name", name = "name") String name);
+@CjService(name = "/hello")
+public class HelloService {
+    public String sayHello() {
+        return "Hello, ECM!";
+    }
 }
 ```
+The code above shows how to declare service interfaces and implementations using annotations, and ECM automatically handles service registration and invocation.
 
-This interface declares an open port and includes the necessary annotations (`@CjOpenports`, `@CjOpenport`, and `@CjOpenportParameter`) to expose the API endpoint.
+### 2. Automated Service Governance
+ECM provides automated **service registration, discovery, routing**, and **load balancing**. The system automatically manages the lifecycle of microservices, ensuring high availability and reliability. Developers don’t need to manually configure and manage these processes, greatly simplifying development.
 
-#### Implement the Open Ports Interface
+### 3. Efficient Development and Deployment
+With ECM's built-in service governance and rapid deployment capabilities, developers can quickly complete development and testing. Compared to traditional frameworks, ECM reduces the integration and configuration of middleware, simplifying the development and deployment process.
 
-The implementation class is typically found in the `.program` project. Here’s an example implementation:
+### 4. Flexible Microservice Composition and Expansion
+ECM supports modular microservice development. Service components can be independently deployed, scaled, and replaced. The flexible composition and expansion of services help developers iterate and expand functionality without impacting other services, ensuring high maintainability and flexibility of the system.
+
+### 5. JSS Services: The Advantage of Cross-Platform Development
+**JSS Services** are an important advantage of the ECM technology system, supporting the development of **JavaScript services**, greatly enhancing development flexibility and cross-platform capability. JSS allows developers to write services in JavaScript, which can cooperate with Java services in the ECM environment. This provides developers with the ability to work not only in Java but also leverage the advantages of JavaScript, especially in front-end development and heterogeneous platform integration.
+
+#### Advantages of JSS Services
+- **Cross-Platform Support**: JSS services support running JavaScript code across different platforms, providing greater flexibility, especially suitable for front-end and back-end collaboration and development across technology stacks.
+- **Simplified Development Process**: With JSS, developers can write service logic in JavaScript and deploy and invoke it through ECM, greatly reducing the complexity of service development and management.
+- **Rapid Development and Testing**: Using JSS's rapid development capabilities, developers can quickly build and test services, especially in applications that require frequent changes and rapid iteration.
+
+### 6. Efficient Web Application Development and Openports Integration
+Through ECM's gateway capabilities, developers can decouple web applications from back-end services and use Openports to provide efficient API services. This makes web application development more flexible and enables efficient communication with other services. For scenarios requiring APIs, ECM provides a quick way to expose and manage APIs, reducing development complexity.
+
+---
+
+## How ECM Works
+
+The core idea of the ECM technology system is **service modularization** and **automated management**. Each service declares its interface and implementation via annotations, and the system automatically registers, routes, and invokes the service. Developers don't need to handle these steps manually; the system does it automatically.
+
+### Gateway Web Application Example
+
+ECM supports the development of web applications through a gateway, allowing developers to decouple web pages from business logic and quickly develop and deploy applications. Here is an example of a Java web application based on ECM:
 
 ```java
-package cj.netos.examples.helloworld.xxx.openports.port;
+@CjService(name = "/pages/hello")
+public class HelloWebview implements IGatewayAppSiteWayWebView {
+    @CjServiceRef
+    HelloService helloService;
 
-import cj.netos.examples.helloworld.openports.IHelloworldPorts;
-import cj.studio.ecm.annotation.CjService;
-
-@CjService(name = "/helloworld.ports")
-public class HelloworldPorts implements IHelloworldPorts {
     @Override
-    public String helloworld(String name) {
-        return String.format("Hello %s!", name);
+    public void flow(Frame frame, Circuit circuit, IGatewayAppSiteResource resource) throws CircuitException {
+        Document doc = resource.html(frame.relativeUrl());
+        String helloMessage = helloService.sayHello();
+        circuit.content().writeBytes(doc.toString().getBytes());
     }
 }
 ```
 
-### Openports Configuration Files
+#### Gateway Web Application Entry Point
+Access the application through: `http://localhost:6070/hello/`
 
-There are a few configuration files to be aware of:
+This example shows how to expose a web page through the gateway and separate business logic from page rendering. ECM automatically handles service invocation and page rendering, reducing the workload for developers.
 
-1. **`cj.properties`**: The main configuration file for the ecm service container.
-    - The configuration items in `assembly.yaml` should be reviewed in the context of the cj.studio.ecm project documentation.
+### Gateway Openports Application Example
 
-2. **Gateway Program Configuration**:
-    - `servers.json`: Configures server settings.
-    - `cluster.json`: Configures request routing, such as targeting the service program or forwarding to other openports servers.
-    - `mic-registry.json`: Registers this project with the mic registry, enabling remote management.
+Openports is ECM's way of exposing RESTful APIs. Below is an example based on ECM showing how to quickly expose API endpoints:
 
-3. **Assembly Directory**:
-    - Located at `./cmdtools/gateway/assemblies`, it contains the main assembly and plugin files (e.g., MyBatis, MongoDB, Redis, etc.).
+```java
+@CjOpenports(usage = "Openports Example")
+public interface HelloPorts {
+    @CjOpenport(usage = "Hello API", tokenIn = AccessTokenIn.nope)
+    String hello(@CjOpenportParameter(usage = "Name", name = "name") String name);
+}
+```
 
-### Monitoring and Managing the Setup
+#### Gateway Openports Application Entry Point
+Access the API through: `http://localhost:6060/hello/portsapi/`
 
-In debugging mode, you can monitor and manage configurations using the IntelliJ IDEA console. The configuration files are persistently stored in the directories mentioned above.
+In this example, the `@CjOpenports` annotation declares an API interface, and the `@CjOpenportParameter` annotation marks the parameters of the interface. Developers only need to declare the interface and implementation, and ECM automatically handles service exposure and routing.
+
+---
+
+## ECM vs. Traditional Microservices Frameworks
+
+### Comparison with Spring Series Frameworks
+
+**Spring** and **Spring Boot** are widely used in microservice development, but they often require a lot of configuration, especially for service governance. **Spring Cloud** provides features like service registration and load balancing, but developers still need to perform tedious configurations.
+
+In contrast, **ECM Technology System** provides automated service governance and simplified service registration, routing, and load balancing, which greatly reduces the amount of configuration work. Developers only need to focus on business logic implementation, while the system automatically handles service management and invocation.
+
+### Comparison with Microservices Architecture
+
+Traditional microservices architectures often require developers to manually manage middleware and service components, making the integration process cumbersome and error-prone. ECM technology system, through annotation-driven and automated management, simplifies this process. All service governance features are automatically handled by ECM, greatly reducing the burden on developers.
+
+---
+
+## Conclusion
+
+The **ECM Technology System** provides an efficient, flexible, and straightforward way to develop and manage microservice applications. Through annotation-driven, automated service governance, and flexible microservice composition, ECM greatly improves development efficiency and simplifies system management. Whether it's quickly developing web applications or rapidly exposing Openports APIs, ECM provides simple solutions that help developers focus on business logic implementation rather than service governance.
+
+Most importantly, the introduction of **JSS Services** allows developers to use JavaScript to work alongside Java services, providing strong support for cross-platform development, front-end and back-end separation, and multi-technology stack collaboration, making ECM a powerful tool for modern software development.
