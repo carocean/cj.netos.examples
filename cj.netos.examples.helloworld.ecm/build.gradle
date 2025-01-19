@@ -17,15 +17,13 @@ sourceSets {
  }
 
 dependencies {
-	compile fileTree('src/cj/refembeds')
-	compile fileTree('src/cj/references')
+    implementation 'log4j:log4j:1.2.17'
 }
-
 
  task releaseToOutputs(type: Copy) {
  dependsOn "build"
  from 'build/libs/'
- into '../outputs'
+ into './outputs'
  include '**/*.jar'
  }
  task release(type:Copy){

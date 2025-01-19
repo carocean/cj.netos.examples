@@ -1,10 +1,12 @@
 -Xdoclint:none '-quiet'
 -charSet 'UTF-8'
--classpath '/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.ecm/build/classes/java/main:/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.ecm/build/resources/main:/Users/andrewjoes/.gradle/caches/modules-2/files-2.1/cj.studio.ecm/cj.studio.ecm.corelib/2.4.0/94c5ea17782775fca79a5260c03726499b5e77f5/cj.studio.ecm.corelib-2.4.0.jar:/Users/andrewjoes/.gradle/caches/modules-2/files-2.1/cj.studio.ecm/cj.ultimate/2.4.0/db7cb6715bbf9898a1d71535b39bcc3bc9c402ed/cj.ultimate-2.4.0.jar:/Users/andrewjoes/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.26/a78a8747147d2c5807683e76ec2b633e95c14fe9/snakeyaml-1.26.jar'
+-classpath '/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.ecm/build/classes/java/main:/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.ecm/build/resources/main:/Users/andrewjoes/.gradle/caches/modules-2/files-2.1/cj.studio.ecm/cj.studio.ecm.corelib/2.4.0/94c5ea17782775fca79a5260c03726499b5e77f5/cj.studio.ecm.corelib-2.4.0.jar:/Users/andrewjoes/.gradle/caches/modules-2/files-2.1/cj.studio.ecm/cj.ultimate/2.4.0/db7cb6715bbf9898a1d71535b39bcc3bc9c402ed/cj.ultimate-2.4.0.jar:/Users/andrewjoes/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar:/Users/andrewjoes/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.26/a78a8747147d2c5807683e76ec2b633e95c14fe9/snakeyaml-1.26.jar'
 -d '/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.ecm/build/docs/javadoc'
 -doctitle 'cj.netos.examples.helloworld.ecm 1.0.0 API'
 -encoding 'UTF-8'
 -notimestamp 
 -quiet 
 -windowtitle 'cj.netos.examples.helloworld.ecm 1.0.0 API'
-'/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.ecm/src/Main.java'
+'/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.ecm/src/cj/netos/examples/helloworld/ecm/IHello.java'
+'/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.ecm/src/cj/netos/examples/helloworld/ecm/service/HelloService.java'
+'/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.ecm/src/cj/netos/examples/helloworld/ecm/HelloMain.java'

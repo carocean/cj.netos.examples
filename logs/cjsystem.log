@@ -1208,3 +1208,9 @@
 2025年01月18日 00:41:55  信息 : -------------应用启动完毕-------------------
 2025年01月18日 00:41:55  信息: cj.studio.gateway.tools.GatewayEntrypoint - 网关成功启动
 2025年01月18日 01:45:09  信息 : 网关监视失败。原因：Bad file descriptor
+2025年01月18日 16:17:04  信息 : -------------网关启动完毕-------------------
+2025年01月18日 16:17:04  信息: cj.studio.gateway.GatewaySocketContainer - 发现应用:hello，加载...
+2025年01月18日 16:17:04  信息 : 已装载共享库/Users/andrewjoes/Studio/projects/cj.netos.examples/cj.netos.examples.helloworld.website/cmdtools/gateway/lib/share
+2025年01月18日 16:17:04  信息 : -------------应用启动完毕-------------------
+2025年01月18日 16:17:04  信息: cj.studio.gateway.tools.GatewayEntrypoint - 网关成功启动
+2025年01月18日 16:18:21  信息 : 网关监视失败。原因：Bad file descriptor
