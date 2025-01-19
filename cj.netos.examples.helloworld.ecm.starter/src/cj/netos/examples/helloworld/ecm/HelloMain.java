@@ -16,7 +16,7 @@ public class HelloMain {
         IAdaptable activable = (IAdaptable) assembly.workbin().part("helloService");
         IActuator actuator = activable.getAdapter(IActuator.class);
         String ret = (String) actuator.exeCommand("hello", "Andrew");
-        CJSystem.logging().info("This is the result returned by the Java service helloService: " + ret);
+        CJSystem.logging().info(ret);
         assembly.stop();
     }
 }
