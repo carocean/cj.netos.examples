@@ -3,7 +3,7 @@ package cj.netos.examples.helloworld.ecm.service;
 import cj.netos.examples.helloworld.ecm.IHello;
 import cj.studio.ecm.annotation.CjService;
 
-@CjService(name = "helloService", isExoteric = true)
+@CjService(name = "helloService")
 public class HelloService implements IHello {
 
     @Override

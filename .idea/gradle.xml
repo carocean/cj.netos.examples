@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/cj.netos.examples.helloworld.ecm" />
+            <option value="$PROJECT_DIR$/cj.netos.examples.helloworld.ecm.starter" />
             <option value="$PROJECT_DIR$/cj.netos.examples.helloworld.website" />
             <option value="$PROJECT_DIR$/cj.netos.examples.helloworld.xxx.openports" />
             <option value="$PROJECT_DIR$/cj.netos.examples.helloworld.xxx.program" />

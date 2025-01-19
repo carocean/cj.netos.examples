@@ -1,6 +1,0 @@
-cj/netos/examples/helloworld/ecm/service/HelloService.java
- cj.netos.examples.helloworld.ecm.service.HelloService
-cj/netos/examples/helloworld/ecm/IHello.java
- cj.netos.examples.helloworld.ecm.IHello
-cj/netos/examples/helloworld/ecm/HelloMain.java
- cj.netos.examples.helloworld.ecm.HelloMain
